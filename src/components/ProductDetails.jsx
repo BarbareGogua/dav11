@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ProductDetails = ({ product }) => {
-  const [activeImage, setActiveImage] = useState(product.thumbnail);
-
   if (!product) {
     return <div>პროდუქტის ინფორმაცია ვერ მოიძებნა</div>;
   }
@@ -13,24 +11,12 @@ const ProductDetails = ({ product }) => {
         <div className="md:w-1/2 p-6">
           <div className="h-96 overflow-hidden rounded-lg shadow-md">
             <img
-              src={activeImage}
+              src={product.images[0] || product.thumbnail} 
               alt={product.title}
               className="w-full h-full object-contain"
             />
           </div>
-          <div className="mt-4 flex overflow-x-auto gap-2">
-            {product.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`${product.title} thumbnail ${index}`}
-                className={`w-20 h-20 object-cover cursor-pointer border rounded-md ${
-                  activeImage === image ? 'border-blue-500 border-2' : 'border-gray-300'
-                }`}
-                onClick={() => setActiveImage(image)}
-              />
-            ))}
-          </div>
+          {}
         </div>
 
         <div className="md:w-1/2 p-6">
